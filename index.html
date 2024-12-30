@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Antunes Motorsport</title>
+    <style>
+        /* Estilo global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #eee;
+            line-height: 1.6;
+            text-align: center;
+        }
 
+        header {
+            background: #111;
+            padding: 15px 20px;
+            color: #f4a500;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+
+        h1, h2 {
+            color: #f4a500;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: #333;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+            color: #f4a500;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input, select {
+            background: #444;
+            color: #eee;
+        }
+
+        button {
+            background: #f44336;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #d73225;
+            transform: scale(1.05);
+        }
+
+        .success-message {
+            color: #f4a500;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Antunes Motorsport - Agendamento Online
+    </header>
+
+    <section>
+        <h1>Agende seu Serviço</h1>
+        <p>Preencha o formulário abaixo para agendar um horário na Antunes Motorsport.</p>
+
+        <form id="form-agendamento">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+
+            <label for="servico">Escolha o Serviço:</label>
+            <select id="servico" name="servico" required>
+                <option value="">Selecione um serviço</option>
+                <option value="Troca de Óleo">Troca de Óleo</option>
+                <option value="Revisão Geral">Revisão Geral</option>
+                <option value="Balanceamento">Balanceamento</option>
+                <option value="Freios">Troca de Freios</option>
+                <option value="Suspensão">Manutenção de Suspensão</option>
+            </select>
+
+            <label for="data">Data do Agendamento:</label>
+            <input type="date" id="data" name="data" required>
+
+            <button type="submit">Agendar</button>
+        </form>
+
+        <div class="success-message" id="success-message" style="display: none;">
+            Obrigado! Seu agendamento foi enviado com sucesso.
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('form-agendamento').addEventListener('submit', function (e) {
+            e.preventDefault(); // Impede o envio do formulário
+
+            // Obter valores dos campos
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+
+            // Verificação básica
+            if (!nome || !email || !servico || !data) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            if (!validarEmail(email)) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+
+            // Simula envio de dados e exibe mensagem de sucesso
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('form-agendamento').reset(); // Limpa o formulário
+        });
+
+        // Função para validar e-mail
+        function validarEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
+</body>
+</html>
